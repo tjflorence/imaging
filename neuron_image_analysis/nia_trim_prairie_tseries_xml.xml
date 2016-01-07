@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+
+<xsl:stylesheet version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:template match="/PVScan">
+
+   <PVScan><xsl:text>
+</xsl:text>
+   <xsl:apply-templates select="Sequence" />
+   </PVScan>
+</xsl:template>
+
+<xsl:template match="Sequence">
+<Sequence><xsl:text>
+</xsl:text>
+   <xsl:apply-templates select="Frame" />
+</Sequence><xsl:text>
+</xsl:text>  
+</xsl:template>
+
+<xsl:template match="Frame">
+   <Frame>
+      <xsl:attribute name="index" >
+         <xsl:value-of select="@index" />
+      </xsl:attribute>
+      <xsl:attribute name="relativeTime" >
+         <xsl:value-of select="@relativeTime" />
+      </xsl:attribute><xsl:text>
+</xsl:text>
+   <xsl:apply-templates select="File" />
+   </Frame><xsl:text>
+</xsl:text>
+
+</xsl:template>
+
+<xsl:template match="File">
+   <File>
+      <xsl:attribute name="channel" >
+         <xsl:value-of select="@channel" />
+      </xsl:attribute>
+      <xsl:attribute name="filename" >
+         <xsl:value-of select="@filename" />
+      </xsl:attribute>
+   </File><xsl:text>
+</xsl:text>
+</xsl:template>
+
+</xsl:stylesheet>
